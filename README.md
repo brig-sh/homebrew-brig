@@ -33,13 +33,17 @@ follows stable versions only.
 A cask rather than a formula because brig ships pre-compiled binaries, which
 is what Homebrew now wants casks for.
 
-## While brig is a private repository
+## Before the first stable release
 
-Homebrew downloads release assets over plain HTTPS with no credentials, so
-`brew install --cask brig` cannot fetch them until `brig-sh/brig` is public.
-Until then, install by hand:
+The cask arrives with the first stable tag of
+[brig-sh/brig](https://github.com/brig-sh/brig); release candidates are
+skipped, so that `brew upgrade` follows stable versions only. Until then,
+install from source or from a release archive:
 
 ```bash
+git clone https://github.com/brig-sh/brig && cd brig && make build
+
+# or, from a published release
 gh release download --repo brig-sh/brig --pattern 'brig-*-darwin-arm64.tar.gz'
 tar xzf brig-*-darwin-arm64.tar.gz
 sudo install -m 0755 brig brigd /usr/local/bin/
