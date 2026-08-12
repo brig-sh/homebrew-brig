@@ -1,3 +1,10 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/brig-mark-on-dark.svg">
+    <img alt="brig" src="assets/brig-mark-on-light.svg" width="72">
+  </picture>
+</p>
+
 # homebrew-brig
 
 The Homebrew tap for [brig](https://github.com/brig-sh/brig): run a coding
