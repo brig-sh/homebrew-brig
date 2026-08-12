@@ -6,6 +6,7 @@ does not.
 
 ```bash
 brew tap brig-sh/brig
+brew trust brig-sh/brig   # brew refuses untrusted third-party taps
 brew install --cask brig
 brig run claude
 ```
