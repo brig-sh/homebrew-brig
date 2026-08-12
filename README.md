@@ -17,7 +17,7 @@ runtime brig drives on macOS.
 ## What is in here
 
 `Casks/brig.rb`, and nothing else. GoReleaser writes it on each stable
-release of `brig-sh/brig` — do not edit it by hand, the next release
+release of `brig-sh/brig` -- do not edit it by hand, the next release
 overwrites it. Release candidates are skipped on purpose, so `brew upgrade`
 follows stable versions only.
 
@@ -38,7 +38,7 @@ sudo install -m 0755 brig brigd /usr/local/bin/
 
 ## Verifying what you downloaded
 
-Every release is signed with keyless cosign — no key to distribute, and none
+Every release is signed with keyless cosign -- no key to distribute, and none
 for us to lose. The signature is bound to the workflow that built it and
 recorded in Sigstore's public transparency log:
 
