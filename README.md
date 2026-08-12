@@ -10,9 +10,18 @@ brew install --cask brig
 brig run claude
 ```
 
-That pulls in `cosign` and `nofireai/nofire/urunc-macos` as dependencies:
-the first verifies guest images before they boot, the second is the microVM
-runtime brig drives on macOS.
+That pulls in `cosign`, which verifies guest images before they boot.
+
+On macOS you also need `hull`, the microVM runtime. It is not published yet --
+it ships today as `urunc-macos`, from a private tap:
+
+```bash
+brew tap nofireai/nofire git@github.com:NOFireAI/homebrew-nofire.git
+brew install urunc-macos
+```
+
+The cask will depend on it directly once that is public. On Linux brig drives
+`nerdctl` and needs nothing else.
 
 ## What is in here
 
