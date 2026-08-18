@@ -14,6 +14,15 @@ cask "hull" do
   # caveat says so, but blocking the install means nobody can tell us whether
   # an older release works. arch stays hard: Virtualization.framework on
   # Apple Silicon is the whole product.
+  # cosign is what checks the signature on the boot bundle -- the kernel,
+  # initrd and guest agent every sandbox boots. Without it on PATH, hull's
+  # check returns "no tooling", and under the default mode that is not a
+  # refusal: the bundle is fetched, written and booted with a printed warning.
+  # So on the shipped install path the one control over the boot chain was off
+  # by default, purely because nothing pulled the binary in. brig's cask has
+  # always depended on it; hull, which is the thing doing the verifying, did
+  # not.
+  depends_on formula: "cosign"
   depends_on arch: :arm64
 
   # vz-runner and hvi sit next to hull: the CLI discovers a runner beside its
