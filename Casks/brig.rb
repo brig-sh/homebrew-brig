@@ -1,27 +1,27 @@
-# Interim cask, written by hand against v0.1.0-rc13. brig's own release
+# Interim cask, written by hand against v0.1.0-rc14. brig's own release
 # workflow takes this over on the first stable tag: goreleaser's skip_upload
 # is "auto", so it does not publish a cask for a prerelease.
 cask "brig" do
-  version "0.1.0-rc13"
+  version "0.1.0-rc14"
 
   on_macos do
     on_intel do
-      sha256 "62f3c39e88c1507521388ff9b0c4ffd8c4e16743aea6164819d77d383de6c439"
+      sha256 "3ba11abcdf40dfe84dd76009acbfe35cdfa61b3f417e41246438429274ff598f"
       url "https://github.com/brig-sh/brig/releases/download/v#{version}/brig-#{version}-darwin-amd64.tar.gz"
     end
     on_arm do
-      sha256 "e9a68ddb2ab4727f2ba21b78ece62c1b6762d9cabee48321164e5314de40e79c"
+      sha256 "8a805f7676c5d61544fce866f8f9dcdaaa3ec21cf1cf5eefa687f00227c8114b"
       url "https://github.com/brig-sh/brig/releases/download/v#{version}/brig-#{version}-darwin-arm64.tar.gz"
     end
   end
 
   on_linux do
     on_intel do
-      sha256 "e216a4001788a547a48524ebb7ac7b650e39e830f971a4ed8ca9381f464353a5"
+      sha256 "a7537e1701796387a19a2eb6c415643ee24ad979aa8eeb39553e39f3f6b60fd6"
       url "https://github.com/brig-sh/brig/releases/download/v#{version}/brig-#{version}-linux-amd64.tar.gz"
     end
     on_arm do
-      sha256 "8bffc560cd8378ef7d027b3ba31075470def1d6272250e213367917451ceb50b"
+      sha256 "91cc07f8e91c0840e1dc0f042401df8726bcbdf16c885212d9096973c024b870"
       url "https://github.com/brig-sh/brig/releases/download/v#{version}/brig-#{version}-linux-arm64.tar.gz"
     end
   end
