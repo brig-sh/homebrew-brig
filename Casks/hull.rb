@@ -1,9 +1,9 @@
-# Interim cask, written by hand against v0.1.0-rc14. hull's own release
+# Interim cask, written by hand against v0.1.0-rc15. hull's own release
 # workflow takes this over on the first stable tag: goreleaser's
 # skip_upload is "auto", so it does not publish a cask for a prerelease.
 cask "hull" do
-  version "0.1.0-rc14"
-  sha256 "e511f7c032174c435491f27f51b0296312d49c9703d5828cf0ca7862389d9529"
+  version "0.1.0-rc15"
+  sha256 "65568ca7f1bac5b9047e373598fc9ab4a0d04f59ce49cd752d94dbd2d650c916"
 
   url "https://github.com/brig-sh/hull/releases/download/v#{version}/hull-#{version}-arm64.tar.gz"
   name "hull"
