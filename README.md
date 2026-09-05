@@ -97,3 +97,7 @@ Apache-2.0, matching [brig](https://github.com/brig-sh/brig) itself.
 </p>
 
 <p align="center">Powered by <a href="https://nofire.ai">NOFire AI</a></p>
+
+## AI policy
+
+AI-assisted development is welcome in homebrew-brig. See [AI_POLICY.md](AI_POLICY.md).
