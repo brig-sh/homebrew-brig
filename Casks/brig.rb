@@ -36,13 +36,20 @@ cask "brig" do
 
   binary "brig"
   binary "brigd"
+  # Shipped in the archive from v0.1.0-rc18; brew puts each one where its
+  # shell reads completions from, as brig's own cask config does.
+  bash_completion "completions/brig.bash"
+  fish_completion "completions/brig.fish"
+  zsh_completion "completions/brig.zsh"
 
   caveats <<~EOS
-    On Linux, brig drives nerdctl and needs nothing else.
+    On Linux, brig drives nerdctl and needs nothing else. On macOS it drives
+    hull, which brew installed alongside this cask.
 
     Guest images are verified with cosign before boot. An image brig-sh did
-    not publish is reported and booted anyway. One that claims to be ours and
-    fails verification stops and asks.
+    not publish is reported and booted anyway -- bring-your-own images are a
+    supported way to use brig. One that claims to be ours and fails
+    verification stops and asks.
 
     Start with:
       brig run claude
