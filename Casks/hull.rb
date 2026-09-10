@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Interim cask, written by hand against v0.1.0-rc27. hull's own release
 # workflow takes this over on the first stable tag: goreleaser's
 # skip_upload is "auto", so it does not publish a cask for a prerelease.
@@ -14,6 +16,7 @@ cask "hull" do
   # caveat says so, but blocking the install means nobody can tell us whether
   # an older release works. arch stays hard: Virtualization.framework on
   # Apple Silicon is the whole product.
+  depends_on arch: :arm64
   # cosign is what checks the signature on the boot bundle -- the kernel,
   # initrd and guest agent every sandbox boots. Without it on PATH, hull's
   # check returns "no tooling", and under the default mode that is not a
@@ -23,7 +26,6 @@ cask "hull" do
   # always depended on it; hull, which is the thing doing the verifying, did
   # not.
   depends_on formula: "cosign"
-  depends_on arch: :arm64
 
   # vz-runner and hvi sit next to hull: the CLI discovers a runner beside its
   # own executable, and both carry the entitlement their backend needs --
