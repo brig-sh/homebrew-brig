@@ -1,0 +1,79 @@
+name: CI
+
+# Check the casks on every change, because nothing else does.
+#
+# Both brig and hull set `pull_request.enabled` on their GoReleaser cask
+# config, so a stable tag in either repo opens a pull request here on its own.
+# That pull request rewrites the bytes people install. This workflow is the
+# second pair of eyes it was supposed to get.
+#
+# Two gates, and they catch different things. `brew style` and `brew audit`
+# check that a cask is well-formed; `check-cask-checksums.py` checks that it
+# is honest, by asking the release whether it really published the sha256 the
+# cask claims. A well-formed cask pointing at the wrong bytes passes the first
+# and fails the second.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  casks:
+    name: style and audit
+    # macOS, and not by preference. Homebrew on Linux refuses cask commands
+    # outright, so `brew audit --cask` has nowhere else to run. This is a
+    # GitHub-hosted runner: it does not touch self-hosted Mac capacity.
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      # `brew audit` takes tap-qualified names, not paths, so the checkout has
+      # to be a tap before it can be audited. Copying it into place is the
+      # whole of that: Homebrew reads the directory, and a tap needs to look
+      # like a git repository.
+      - name: Tap this checkout
+        run: |
+          set -euo pipefail
+          tap="$(brew --repository)/Library/Taps/brig-sh/homebrew-brig"
+          rm -rf "$tap"
+          mkdir -p "$(dirname "$tap")"
+          cp -R "$GITHUB_WORKSPACE" "$tap"
+          cd "$tap"
+          rm -rf .git
+          git init -q
+          git add -A
+          git -c user.email=ci@brig.sh -c user.name=ci commit -qm "ci checkout"
+
+      # GoReleaser writes a cask with its own indentation, so the pull request
+      # it opens on a stable tag arrives with correctable offences. The fix is
+      # `brew style --fix Casks/*.rb` on that branch, and the README says so.
+      - name: brew style
+        run: brew style brig-sh/brig
+
+      # Offline on purpose. `brew audit --online` adds two complaints that are
+      # true and not actionable while the casks pin release candidates: the
+      # tag is a GitHub pre-release, and there is no livecheck stanza to
+      # compare the version against. Both go away at the first stable tag,
+      # and this line should grow `--online` when they do.
+      - name: brew audit
+        run: brew audit --cask brig-sh/brig/brig brig-sh/brig/hull
+
+  checksums:
+    name: checksums match the releases
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Compare every cask against its release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 script/check-cask-checksums.py Casks/*.rb
