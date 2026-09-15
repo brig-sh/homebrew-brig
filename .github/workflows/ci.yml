@@ -12,6 +12,12 @@ name: CI
 # is honest, by asking the release whether it really published the sha256 the
 # cask claims. A well-formed cask pointing at the wrong bytes passes the first
 # and fails the second.
+#
+# The prerelease channel casks arrive differently: brig and hull push those
+# straight here whenever a channel moves, rather than opening a pull request,
+# because they are regenerated on every merge. So this workflow also runs on
+# pushes to main, and both gates read every cask in the tap rather than a list
+# written down here.
 
 on:
   push:
@@ -70,8 +76,20 @@ jobs:
       # tag is a GitHub pre-release, and there is no livecheck stanza to
       # compare the version against. Both go away at the first stable tag,
       # and this line should grow `--online` when they do.
+      # Every cask in the tap, not a list written here. The channel casks
+      # (brig@main, brig@experimental and the hull pair) are pushed by the
+      # brig and hull repositories whenever one of those channels moves, so a
+      # hand-kept list would miss the ones that arrive on their own.
       - name: brew audit
-        run: brew audit --cask brig-sh/brig/brig brig-sh/brig/hull
+        run: |
+          set -euo pipefail
+          casks=()
+          for f in Casks/*.rb; do
+            casks+=("brig-sh/brig/$(basename "$f" .rb)")
+          done
+          # The macOS runner's /bin/bash is 3.2, where an empty array under
+          # `set -u` is an unbound variable rather than nothing.
+          brew audit --cask ${casks[@]+"${casks[@]}"}
 
   checksums:
     name: checksums match the releases
