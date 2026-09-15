@@ -53,6 +53,12 @@ jobs:
           git add -A
           git -c user.email=ci@brig.sh -c user.name=ci commit -qm "ci checkout"
 
+      # Homebrew 6 and later ignore a third-party tap until it is trusted, and
+      # `brew style` then has nothing to inspect. The README asks users for
+      # the same step.
+      - name: Trust the tap
+        run: brew trust brig-sh/brig
+
       # GoReleaser writes a cask with its own indentation, so the pull request
       # it opens on a stable tag arrives with correctable offences. The fix is
       # `brew style --fix Casks/*.rb` on that branch, and the README says so.
