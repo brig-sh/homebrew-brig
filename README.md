@@ -29,7 +29,7 @@ brew install --cask hull
 ```
 
 On Linux brig drives `nerdctl` with containerd and needs nothing else. hull
-runs on macOS on Apple silicon only, and its cask requires `arm64`.
+runs on macOS on Apple silicon only, and its cask requires both.
 
 ## What is in here
 
