@@ -6,8 +6,8 @@
 # release, it moves without notice, and it is not what
 # `brew install --cask hull` gives you.
 cask "hull@main" do
-  version "0.1.0-rc30-main.20261006172541.9f1d349"
-  sha256 "387b6d608f0f0ae87d801581106487b3482d0b34f926a1f00a294d860527940a"
+  version "0.1.0-rc31-main.20261006174911.159772e"
+  sha256 "595712a75cdf6aa56b8b59c9c91b369cac31b809108b91ee9a4c13f2dd3bb25c"
 
   url "https://github.com/brig-sh/hull/releases/download/channel-main-#{version}/hull-#{version}-arm64.tar.gz"
   name "hull (main)"
