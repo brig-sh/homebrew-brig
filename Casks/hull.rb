@@ -12,6 +12,13 @@ cask "hull" do
   desc "Run unikernels and sandboxed Linux containers as microVMs on Apple Silicon"
   homepage "https://github.com/brig-sh/hull"
 
+  # The channel casks install the same binaries at the same paths. They name
+  # this cask in their conflicts_with, but Homebrew reads only the conflicts
+  # of the cask being installed, so this one names them too.
+  conflicts_with cask: [
+    "hull@experimental",
+    "hull@main",
+  ]
   # No macOS floor on purpose. Tahoe is what we develop and test on, and the
   # caveat says so, but blocking the install means nobody can tell us whether
   # an older release works. arch stays hard: Virtualization.framework on
@@ -26,6 +33,9 @@ cask "hull" do
   # always depended on it; hull, which is the thing doing the verifying, did
   # not.
   depends_on formula: "cosign"
+  # macOS only, still with no floor. Without it Homebrew installs the darwin
+  # binaries on Linux on arm64.
+  depends_on :macos
 
   # vz-runner and hvi sit next to hull: the CLI discovers a runner beside its
   # own executable, and both carry the entitlement their backend needs --
