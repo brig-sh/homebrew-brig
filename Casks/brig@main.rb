@@ -51,8 +51,8 @@ cask "brig@main" do
   binary "brig"
   binary "brigd"
   bash_completion "completions/brig.bash"
-  fish_completion "completions/brig.fish"
   zsh_completion "completions/brig.zsh"
+  fish_completion "completions/brig.fish"
 
   caveats <<~EOS
     This is the main channel, built from the tip of main.
