@@ -6,26 +6,26 @@
 # release, it moves without notice, and it is not what
 # `brew install --cask brig` gives you.
 cask "brig@main" do
-  version "0.5.3-0.20261118110714-cf80f904bdd0"
+  version "0.5.3-0.20261118163702-5c782d3a47e5"
 
   on_macos do
     on_arm do
-      sha256 "8401eef8268587bc39fe297f29efe9b1fc38b20824f14cacaa2fb15b0b563ff7"
-      url "https://github.com/brig-sh/brig/releases/download/channel-main-0.5.3-0.20261118110714-cf80f904bdd0/brig-0.5.3-0.20261118110714-cf80f904bdd0-darwin-arm64.tar.gz"
+      sha256 "c981c49a4f1ebdd54693cb5d77b9417c9931667f49cf694255e838c740bc11e0"
+      url "https://github.com/brig-sh/brig/releases/download/channel-main-0.5.3-0.20261118163702-5c782d3a47e5/brig-0.5.3-0.20261118163702-5c782d3a47e5-darwin-arm64.tar.gz"
     end
     on_intel do
-      sha256 "88d4d44d4cae97d1bd3b0e4e33cde5bf04f95ab3a7a972a00ace9c318f7b4afc"
-      url "https://github.com/brig-sh/brig/releases/download/channel-main-0.5.3-0.20261118110714-cf80f904bdd0/brig-0.5.3-0.20261118110714-cf80f904bdd0-darwin-amd64.tar.gz"
+      sha256 "c39536749320e56f08334bc2573ed72b713727a513c7e2ed4f5d2a69db4f81db"
+      url "https://github.com/brig-sh/brig/releases/download/channel-main-0.5.3-0.20261118163702-5c782d3a47e5/brig-0.5.3-0.20261118163702-5c782d3a47e5-darwin-amd64.tar.gz"
     end
   end
   on_linux do
     on_arm do
-      sha256 "71d4140964f3c18a746f081a2752a29e762c3af368f53bf974aa71d0a1dc9564"
-      url "https://github.com/brig-sh/brig/releases/download/channel-main-0.5.3-0.20261118110714-cf80f904bdd0/brig-0.5.3-0.20261118110714-cf80f904bdd0-linux-arm64.tar.gz"
+      sha256 "7d2428a30aeece1fe21e79a6420ceeb28f83ad7a3a0c6fbd73f38f428865f218"
+      url "https://github.com/brig-sh/brig/releases/download/channel-main-0.5.3-0.20261118163702-5c782d3a47e5/brig-0.5.3-0.20261118163702-5c782d3a47e5-linux-arm64.tar.gz"
     end
     on_intel do
-      sha256 "e1bad1e051a915a17e8d094f78a080a36bee0b45d24ba3abd977bf28a03e92ba"
-      url "https://github.com/brig-sh/brig/releases/download/channel-main-0.5.3-0.20261118110714-cf80f904bdd0/brig-0.5.3-0.20261118110714-cf80f904bdd0-linux-amd64.tar.gz"
+      sha256 "c02e60de294a2e082f6b9da35c06e80da81dc0026aebab3118c9dd1fca9ff8bd"
+      url "https://github.com/brig-sh/brig/releases/download/channel-main-0.5.3-0.20261118163702-5c782d3a47e5/brig-0.5.3-0.20261118163702-5c782d3a47e5-linux-amd64.tar.gz"
     end
   end
 
