@@ -33,7 +33,8 @@ runs on macOS on Apple silicon only, and its cask requires `arm64`.
 
 ## What is in here
 
-Two casks.
+Two casks people install, and four more that carry builds which are not
+releases.
 
 `Casks/brig.rb` installs `brig` and `brigd`, plus the bash, zsh and fish
 completions the release archive carries. Homebrew puts each one where its
@@ -48,6 +49,32 @@ QEMU backend.
 
 Both are casks rather than formulae because brig and hull ship pre-compiled
 binaries, which is what Homebrew now wants a cask for.
+
+### The prerelease channels
+
+`brig@main`, `brig@experimental`, `hull@main` and `hull@experimental` carry
+builds that are not releases, for anyone who wants to try a feature before it
+reaches one.
+
+```bash
+brew install --cask brig-sh/brig/brig@main           # the tip of main
+brew install --cask brig-sh/brig/brig@experimental   # a branch someone promoted
+```
+
+A `@main` cask is rebuilt on every merge to that repository's `main`. A
+`@experimental` one moves only when a maintainer promotes a particular ref to
+it, which is how an unmerged branch reaches a tester. `brig@main` depends on
+`hull@main` rather than the released hull, because a feature usually spans
+both.
+
+None of them is supported. They can break, they move without notice, and only
+one cask per project can be installed at a time -- `brig` and `brig@main`
+conflict, as they must, because they put the same binaries at the same paths.
+
+These four are not maintained here. brig and hull generate them and push them
+straight to this repository whenever a channel moves; a pull request per merge
+would be noise nobody reads. Do not hand-edit one. The cask that people
+install, `brig.rb` and `hull.rb`, keeps its review.
 
 ## How the casks are maintained
 
@@ -76,6 +103,12 @@ out of each download URL, fetches that release's `checksums.txt` and compares
 it with what the cask claims. A cask can be well-formed and still point at
 the wrong bytes, so both gates run.
 
+Both read every cask in `Casks/`, rather than a list written down in CI. The
+channel casks arrive here on their own, pushed by brig and hull when a channel
+moves, so a hand-kept list would miss exactly the ones nobody reviewed. A
+channel release publishes its `checksums.txt` like any other, so the honesty
+check covers those too.
+
 You can run either one locally:
 
 ```bash
@@ -97,6 +130,10 @@ brew style --fix Casks/brig.rb Casks/hull.rb
 That clears them. The description length is the offence rubocop cannot
 autocorrect, which is why both repositories keep theirs under 80 characters
 in `.goreleaser.yaml`.
+
+A channel cask needs no such pass. Those are written by
+`script/render-cask.py` in brig and hull, which emits what `brew style`
+already wants.
 
 `brew audit --online` is not in CI yet. It adds two complaints that are true
 and not actionable while the casks pin release candidates: the tag is a
