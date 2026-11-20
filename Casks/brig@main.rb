@@ -6,26 +6,26 @@
 # release, it moves without notice, and it is not what
 # `brew install --cask brig` gives you.
 cask "brig@main" do
-  version "0.5.3-0.20261120121527-4aeb84f53628"
+  version "0.6.0"
 
   on_macos do
     on_arm do
-      sha256 "8b1e5f1f0c71b1462a13d67c7f0197b6bedca6e46e38b5331c1934e4dc3eff16"
-      url "https://github.com/brig-sh/brig/releases/download/channel-main-0.5.3-0.20261120121527-4aeb84f53628/brig-0.5.3-0.20261120121527-4aeb84f53628-darwin-arm64.tar.gz"
+      sha256 "cda7c41efa742e39bdeb944463c45834d32e9a43417220950f18b5f16dc72a8e"
+      url "https://github.com/brig-sh/brig/releases/download/channel-main-0.6.0/brig-0.6.0-darwin-arm64.tar.gz"
     end
     on_intel do
-      sha256 "267aff9b06648640118a3b100202492f32e3ce9c6daf6a34dd8f8e14c0d320ce"
-      url "https://github.com/brig-sh/brig/releases/download/channel-main-0.5.3-0.20261120121527-4aeb84f53628/brig-0.5.3-0.20261120121527-4aeb84f53628-darwin-amd64.tar.gz"
+      sha256 "66b38ea2ac339cde9bd7bcff42756513857cb8ae58674bba0b99d8fe4dee220f"
+      url "https://github.com/brig-sh/brig/releases/download/channel-main-0.6.0/brig-0.6.0-darwin-amd64.tar.gz"
     end
   end
   on_linux do
     on_arm do
-      sha256 "ce2701fb91f36352a352fee7690ccf82dc7f74ea423ebb58418d8bd21051c75a"
-      url "https://github.com/brig-sh/brig/releases/download/channel-main-0.5.3-0.20261120121527-4aeb84f53628/brig-0.5.3-0.20261120121527-4aeb84f53628-linux-arm64.tar.gz"
+      sha256 "df71028e98ab58061e22f1027ba4621e760ef7fd3e1cfac06caac5cdf5ab326c"
+      url "https://github.com/brig-sh/brig/releases/download/channel-main-0.6.0/brig-0.6.0-linux-arm64.tar.gz"
     end
     on_intel do
-      sha256 "18beeb147540db532646aec68be0fcd97cb1dc5570ee078b7bf245f1081147bc"
-      url "https://github.com/brig-sh/brig/releases/download/channel-main-0.5.3-0.20261120121527-4aeb84f53628/brig-0.5.3-0.20261120121527-4aeb84f53628-linux-amd64.tar.gz"
+      sha256 "4eef18c0b29486c50a20d4a8245578361dccaf1ace9ded80dad6d2087cc4cc69"
+      url "https://github.com/brig-sh/brig/releases/download/channel-main-0.6.0/brig-0.6.0-linux-amd64.tar.gz"
     end
   end
 
