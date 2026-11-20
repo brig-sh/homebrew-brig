@@ -6,26 +6,26 @@
 # release, it moves without notice, and it is not what
 # `brew install --cask brig` gives you.
 cask "brig@main" do
-  version "0.6.0"
+  version "0.6.1-0.20261120222415-5da946df2dc3"
 
   on_macos do
     on_arm do
-      sha256 "cda7c41efa742e39bdeb944463c45834d32e9a43417220950f18b5f16dc72a8e"
-      url "https://github.com/brig-sh/brig/releases/download/channel-main-0.6.0/brig-0.6.0-darwin-arm64.tar.gz"
+      sha256 "0730def9e969d326f3e4603e2a299595554f1ab89cc0d684939e82fac4c6f3a1"
+      url "https://github.com/brig-sh/brig/releases/download/channel-main-0.6.1-0.20261120222415-5da946df2dc3/brig-0.6.1-0.20261120222415-5da946df2dc3-darwin-arm64.tar.gz"
     end
     on_intel do
-      sha256 "66b38ea2ac339cde9bd7bcff42756513857cb8ae58674bba0b99d8fe4dee220f"
-      url "https://github.com/brig-sh/brig/releases/download/channel-main-0.6.0/brig-0.6.0-darwin-amd64.tar.gz"
+      sha256 "f6f3f0ce0cd055efcf972f141296c51def0b8b554fb2b8d939ceeaa81c114a6a"
+      url "https://github.com/brig-sh/brig/releases/download/channel-main-0.6.1-0.20261120222415-5da946df2dc3/brig-0.6.1-0.20261120222415-5da946df2dc3-darwin-amd64.tar.gz"
     end
   end
   on_linux do
     on_arm do
-      sha256 "df71028e98ab58061e22f1027ba4621e760ef7fd3e1cfac06caac5cdf5ab326c"
-      url "https://github.com/brig-sh/brig/releases/download/channel-main-0.6.0/brig-0.6.0-linux-arm64.tar.gz"
+      sha256 "4a0cd67e2187bc96dc2d471b4a9f03ef637b600223e6037c632c0a1b78d52471"
+      url "https://github.com/brig-sh/brig/releases/download/channel-main-0.6.1-0.20261120222415-5da946df2dc3/brig-0.6.1-0.20261120222415-5da946df2dc3-linux-arm64.tar.gz"
     end
     on_intel do
-      sha256 "4eef18c0b29486c50a20d4a8245578361dccaf1ace9ded80dad6d2087cc4cc69"
-      url "https://github.com/brig-sh/brig/releases/download/channel-main-0.6.0/brig-0.6.0-linux-amd64.tar.gz"
+      sha256 "f4ec1905215e692ad2457bf58aaad734549294fc7de135f5c8f5f750ceb840c0"
+      url "https://github.com/brig-sh/brig/releases/download/channel-main-0.6.1-0.20261120222415-5da946df2dc3/brig-0.6.1-0.20261120222415-5da946df2dc3-linux-amd64.tar.gz"
     end
   end
 
