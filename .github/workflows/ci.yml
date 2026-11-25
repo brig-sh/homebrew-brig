@@ -70,8 +70,20 @@ jobs:
       # tag is a GitHub pre-release, and there is no livecheck stanza to
       # compare the version against. Both go away at the first stable tag,
       # and this line should grow `--online` when they do.
+      #
+      # Every stable cask in Casks/, read from the directory so that a new one,
+      # such as brig-enterprise, is audited by the pull request that adds it.
+      # The @main and @experimental casks are left out, as they always were.
       - name: brew audit
-        run: brew audit --cask brig-sh/brig/brig brig-sh/brig/hull
+        run: |
+          set -euo pipefail
+          casks=()
+          for f in Casks/*.rb; do
+            name="$(basename "$f" .rb)"
+            case "$name" in *@*) continue ;; esac
+            casks+=("brig-sh/brig/$name")
+          done
+          brew audit --cask "${casks[@]}"
 
   checksums:
     name: checksums match the releases
