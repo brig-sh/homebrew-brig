@@ -22,6 +22,14 @@ That is the whole install. The `brig` cask depends on the `hull` cask, so one
 command brings both. It also pulls in `cosign`, which verifies guest images
 before they boot.
 
+Brig Enterprise, the edition with `brig login` for NOFire AI, has its own
+cask. It installs the same `brig` command, so install one edition or the
+other:
+
+```bash
+brew install --cask brig-enterprise
+```
+
 To install the runtime on its own, without brig:
 
 ```bash
@@ -39,6 +47,12 @@ Two casks.
 completions the release archive carries. Homebrew puts each one where its
 shell reads completions from, so a cask install has completion with no second
 step.
+
+`Casks/brig-enterprise.rb` installs Brig Enterprise: the same binaries and
+completions, plus `brig login` and `brig logout`. It conflicts with every
+`brig` cask, because each one installs a `brig` command. Its source is in
+brig's [enterprise/](https://github.com/brig-sh/brig/tree/main/enterprise)
+directory, under its own license.
 
 `Casks/hull.rb` installs three executables side by side: `hull`, `vz-runner`
 and `hvi`. hull looks for a runner next to its own path, so keep them
